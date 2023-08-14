@@ -27,6 +27,7 @@ export function SignIn() {
       >
         <Image
           source={BackGroundImg}
+          defaultSource={BackGroundImg}
           alt="loginImageBackground"
           resizeMode="contain"
           position="absolute"
