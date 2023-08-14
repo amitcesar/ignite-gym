@@ -1,9 +1,31 @@
-import { Center, Heading } from "native-base";
+import { HStack, VStack } from "native-base";
+import { HomeHeader } from "@components/HomeHeader";
+import { Group } from "@components/Group";
+import { useState } from "react";
 
 export function HomeScreen() {
+  const [groupSelected, setGroupSelected] = useState("costa");
   return (
-    <Center flex={1}>
-      <Heading color={"white"}> Home Screen</Heading>
-    </Center>
+    <VStack flex={1}>
+      <HomeHeader />
+      <HStack>
+        <Group
+          name="costa"
+          isActive={groupSelected === "costa"}
+          onPress={() => setGroupSelected("costa")}
+        />
+
+        <Group
+          name="biceps"
+          isActive={groupSelected === "biceps"}
+          onPress={() => setGroupSelected("biceps")}
+        />
+        <Group
+          name="ombro"
+          isActive={groupSelected === "ombro"}
+          onPress={() => setGroupSelected("ombro")}
+        />
+      </HStack>
+    </VStack>
   );
 }
