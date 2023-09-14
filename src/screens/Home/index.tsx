@@ -4,6 +4,8 @@ import { HomeHeader } from "@components/HomeHeader";
 import { Group } from "@components/Group";
 import { HStack, VStack, FlatList, Heading, Text } from "native-base";
 import { ExerciseCard } from "@components/ExerciseCard";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 
 export function HomeScreen() {
   const [groupSelected, setGroupSelected] = useState("costas");
@@ -13,11 +15,18 @@ export function HomeScreen() {
     "Triceps",
     "ombro",
   ]);
+
   const [exercises, setExercises] = useState([
     "Puxada Frontal",
     "Remada unilateral",
     "Remada curvada",
   ]);
+
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  const handleOpenExerciseDetails = () => {
+    navigation.navigate("exercise");
+  };
   return (
     <VStack flex={1}>
       <HomeHeader />
@@ -39,11 +48,12 @@ export function HomeScreen() {
         _contentContainerStyle={{ px: 8 }}
         my={10}
         maxH={10}
+        minH={10}
       />
 
       <VStack flex={1} px={8}>
         <HStack justifyContent={"space-between"} mb={5}>
-          <Heading color="gray.200" fontSize={"md"}>
+          <Heading color="gray.200" fontSize={"md"} fontFamily="heading">
             Exercicio
           </Heading>
 
@@ -55,7 +65,9 @@ export function HomeScreen() {
         <FlatList
           data={exercises}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => <ExerciseCard />}
+          renderItem={({ item }) => (
+            <ExerciseCard onPress={handleOpenExerciseDetails} />
+          )}
           showsVerticalScrollIndicator={false}
           _contentContainerStyle={{ paddingBottom: 20 }}
         />
