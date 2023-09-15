@@ -1,8 +1,9 @@
+import { UserDTO } from "@dtos/UserDTO";
 import { createContext } from "react";
 
-interface AuthContextType {
-  name: string;
-  email: string;
-  password: string;
-}
-export const AuthContext = createContext({} as AuthContextType);
+export type AuthContextDataProps = {
+  user: UserDTO;
+};
+export const AuthContext = createContext<AuthContextDataProps>(
+  {} as AuthContextDataProps
+);
