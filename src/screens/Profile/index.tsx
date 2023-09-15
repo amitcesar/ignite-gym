@@ -7,7 +7,6 @@ import {
   Skeleton,
   Text,
   Heading,
-  Toast,
   useToast,
 } from "native-base";
 import { Button } from "@components/Button";
@@ -18,7 +17,6 @@ import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import { FileInfo } from "expo-file-system";
 
-const UserImg = "https://github.com/erickcloud.png";
 const PHOTO_SIZE = 33;
 
 export function ProfileScreen() {
