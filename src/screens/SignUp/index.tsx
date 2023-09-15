@@ -11,7 +11,7 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios, { isAxiosError } from "axios";
+
 import LogoSvg from "@assets/logo.svg";
 import BackgroundImg from "@assets/background.png";
 
@@ -20,6 +20,7 @@ import { Button } from "@components/Button";
 
 import { api } from "@services/api";
 import { AppError } from "@utils/AppError";
+import { signUpSchema } from "@services/schemas";
 
 type FormDataProps = {
   name: string;
@@ -27,19 +28,6 @@ type FormDataProps = {
   password: string;
   password_confirm: string;
 };
-
-const signUpSchema = yup.object({
-  name: yup.string().required("Informe o nome."),
-  email: yup.string().required("Informe o e-mail.").email("E-mail inválido"),
-  password: yup
-    .string()
-    .required("Informe a senha.")
-    .min(6, "A senha deve ter pelo menos 6 digítos"),
-  password_confirm: yup
-    .string()
-    .required("Confirme a senha.")
-    .oneOf([yup.ref("password"), ""], "A confirmação da senha não confere"),
-});
 
 export function SignUp() {
   const navigation = useNavigation();
