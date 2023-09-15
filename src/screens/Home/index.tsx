@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { HStack, VStack, FlatList, Heading, Text } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 
 import { HomeHeader } from "@components/HomeHeader";
 import { Group } from "@components/Group";
-import { HStack, VStack, FlatList, Heading, Text } from "native-base";
 import { ExerciseCard } from "@components/ExerciseCard";
-import { useNavigation } from "@react-navigation/native";
+
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 
 export function HomeScreen() {

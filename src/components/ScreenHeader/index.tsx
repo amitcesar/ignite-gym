@@ -1,4 +1,4 @@
-import { Center, Heading, VStack } from "native-base";
+import { Center, Heading } from "native-base";
 
 type Props = {
   title: string;

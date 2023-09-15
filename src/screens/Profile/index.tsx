@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import {
   Center,
   VStack,
@@ -9,10 +9,12 @@ import {
   Heading,
   useToast,
 } from "native-base";
+
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { ScreenHeader } from "@components/ScreenHeader";
 import { UserPhoto } from "@components/UserPhoto";
+
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import { FileInfo } from "expo-file-system";
@@ -52,7 +54,7 @@ export function ProfileScreen() {
         setUserPhoto(PhotoURI);
       }
     } catch (error) {
-      console.log(error);
+      throw error;
     } finally {
       setPhotoIsLoading(false);
     }

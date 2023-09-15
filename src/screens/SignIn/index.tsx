@@ -10,8 +10,8 @@ import {
 } from "native-base";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigation } from "@react-navigation/native";
-import { yupResolver } from "@hookform/resolvers/yup";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 import BackGroundImg from "@assets/background.png";
 import LogoSvg from "@assets/logo.svg";

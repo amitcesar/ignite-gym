@@ -8,19 +8,18 @@ import {
   ScrollView,
   useToast,
 } from "native-base";
+
 import { useForm, Controller } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import LogoSvg from "@assets/logo.svg";
 import BackgroundImg from "@assets/background.png";
-
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
-
 import { api } from "@services/api";
-import { AppError } from "@utils/AppError";
 import { signUpSchema } from "@services/schemas";
+import { AppError } from "@utils/AppError";
+import { useAuth } from "@hooks/useAuth";
 
 type FormDataProps = {
   name: string;
@@ -31,6 +30,7 @@ type FormDataProps = {
 
 export function SignUp() {
   const navigation = useNavigation();
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -38,19 +38,18 @@ export function SignUp() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { isSubmitting, errors },
   } = useForm<FormDataProps>({
     resolver: yupResolver(signUpSchema),
   });
 
+  const { signIn } = useAuth();
   const toast = useToast();
+
   async function handleSignUp({ name, email, password }: FormDataProps) {
     try {
-      const response = await api.post("/users", {
-        name,
-        email,
-        password,
-      });
+      await api.post("/users", { name, email, password });
+      await signIn(email, password);
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title = isAppError
@@ -150,6 +149,9 @@ export function SignUp() {
           />
 
           <Button
+            _loading={{ fontFamily: "heading", fontSize: "sm" }}
+            isLoading={isSubmitting}
+            isLoadingText="Criando a conta"
             title="Criar e acessar"
             onPress={handleSubmit(handleSignUp)}
           />

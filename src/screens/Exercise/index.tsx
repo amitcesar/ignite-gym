@@ -1,3 +1,4 @@
+import { TouchableOpacity } from "react-native";
 import {
   VStack,
   Heading,
@@ -8,9 +9,10 @@ import {
   Box,
   ScrollView,
 } from "native-base";
-import { TouchableOpacity } from "react-native";
-import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+
+import { Feather } from "@expo/vector-icons";
+
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import BodySvg from "@assets/body.svg";
 import SeriesSvg from "@assets/series.svg";
